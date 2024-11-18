@@ -1,29 +1,36 @@
+<template>
+  <div>
+    <h3>Danh bạ</h3>
+    <ul>
+      <li
+        v-for="contact in contacts"
+        :key="contact.id"
+        @click="selectContact(contact)"
+        :class="{ selected: selectedContactId === contact.id }"
+      >
+        {{ contact.name }}
+      </li>
+    </ul>
+  </div>
+</template>
 
 <script>
 export default {
-    props: {
-        contacts: { type: Array, default: [] },
-        activeIndex: { type: Number, default: -1 },
+  props: {
+    contacts: Array,
+    selectedContactId: Number, // Nhận ID liên hệ được chọn từ parent
+  },
+  methods: {
+    selectContact(contact) {
+      this.$emit("select-contact", contact); // Gửi liên hệ được chọn lên parent
     },
-    emits: ["update:activeIndex"],
-    methods: {
-        updateActiveIndex(index) {
-            this.$emit("update:activeIndex", index)
-        },
-    },
-}
+  },
+};
 </script>
 
-<template>
-<ul class="list-group">
-    <li 
-        class="list-group-item"
-        v-for="(contact, index) in contacts"
-        :key="contact._id"
-        :class="{ active: index === activeIndex }"
-        @click="updateActiveIndex(index)"
-    >
-        {{ contact.name }}
-    </li>
-</ul>
-</template>
+<style scoped>
+.selected {
+  background-color: #007bff;
+  color: white;
+}
+</style>
