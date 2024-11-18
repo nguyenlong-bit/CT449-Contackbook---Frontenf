@@ -19,6 +19,7 @@
         <p><strong>Email:</strong> {{ selectedContact.email }}</p>
         <p><strong>Số điện thoại:</strong> {{ selectedContact.phone }}</p>
         <p><strong>Địa chỉ:</strong> {{ selectedContact.address }}</p>
+        <p><strong>Liên hệ yêu thích:</strong> {{ }}</p>
       </div>
       <div v-else>
         <p>Vui lòng chọn một liên hệ để xem chi tiết.</p>
